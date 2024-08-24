@@ -19,8 +19,7 @@ logger = logging.getLogger(__name__)
 # Функция, которая будет обрабатывать команду /start
 async def start(update: Update, context) -> None:
     logger.info(
-        "Пользователь %s вызвал команду /start",
-        update.effective_user.first_name
+        "Пользователь %s вызвал команду /" "start", update.effective_user.first_name
     )
     # Приветственное сообщение при запуске бота
     await update.message.reply_text(
@@ -38,15 +37,13 @@ async def handle_time(update: Update, context) -> None:
         # Получаем текст сообщения от пользователя
         time_str = update.message.text
         logger.info(
-            "Пользователь %s ввел время: %s",
-            update.effective_user.first_name, time_str
+            "Пользователь %s ввел время: %s", update.effective_user.first_name, time_str
         )
 
         # Преобразуем введенное время в часы и минуты
         hours = int(time_str[:2])
         minutes = int(time_str[2:])
-        logger.info("Преобразованное время: %d часов и %d минут",
-                    hours, minutes)
+        logger.info("Преобразованное время: %d часов и %d минут", hours, minutes)
 
         # Вычисляем общее время в секундах
         total_time_seconds = hours * 3600 + minutes * 60
@@ -112,7 +109,7 @@ def main() -> None:
 
     # Запуск метода polling, который будет опрашивать сервер Telegram
     # на наличие новых сообщений
-    application.run_polling(timeout=60)
+    application.run_polling(timeout=0)
     # Увеличиваем время ожидания до 60 секунд
 
 
